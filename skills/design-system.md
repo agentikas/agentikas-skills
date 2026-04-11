@@ -51,8 +51,8 @@ without refactoring components later.
 
   /* ── Text ────────────────────────────────────── */
   --color-text:        #0D0D0D;   /* Near-black — primary content */
-  --color-text-muted:  #6B6B6B;   /* Secondary text, metadata */
-  --color-text-soft:   #999999;   /* Dates, captions (AA on paper, not AAA) */
+  --color-text-muted:  #6B6B6B;   /* Secondary text, metadata — 5.2:1 on paper, passes AA */
+  --color-text-soft:   #808080;   /* Dates, captions — 4.5:1 on paper, borderline AA */
   --color-text-invert: #FFFFFF;   /* Text on dark surfaces */
 
   /* ── Brand ───────────────────────────────────── */
@@ -80,8 +80,10 @@ without refactoring components later.
 - **Red (`#C8352A`) is the ONLY accent color** — no blues, greens, or purples as accents
 - **Borders over shadows** — Agentikas does not use `box-shadow`, ever. State changes are expressed through border color, never elevation
 - **Text hierarchy through weight and size**, not color variety
-- **Muted text (`--color-text-muted`) gives ~4.8:1 contrast on paper** — fine for body copy, avoid for anything <14px
-- **Soft text (`--color-text-soft`) is ~4.5:1 and is borderline** — only use it for non-essential metadata (dates, captions). Never for action labels, error states, or any text the user must read to succeed
+- **Muted text (`--color-text-muted` = #6B6B6B) gives ~5.2:1 contrast on paper** — passes WCAG AA for all text sizes, safe for body copy and labels
+- **Soft text (`--color-text-soft` = #808080) gives ~4.5:1 on paper** — the absolute WCAG AA floor, only use for non-essential metadata (dates, captions). Never for action labels, error states, or any text the user must read to succeed
+- **`#999999` FAILS WCAG AA on paper** (~2.41:1). Banned. If you used it in an older file, migrate to `--color-text-soft`
+- **Audit rule of thumb**: run `npx @axe-core/cli` against any page before shipping — axe catches contrast regressions the human eye misses
 
 ### Future: per-blog theming (deferred)
 
